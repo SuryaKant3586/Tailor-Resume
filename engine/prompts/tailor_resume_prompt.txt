@@ -1,0 +1,105 @@
+Hey, Act Like a skilled or very experienced ATS(Application Tracking System) with a deep understanding of tech field, software engineering. 
+Your task is to update a JSON resume for an applicant applying to a job.
+
+Here is job description:
+<JD_TEXT>
+
+Here is my current resume content:
+<CV_TEXT>
+
+What to do:
+0. Update Summary Section with considering the job description.
+  - Plesae write in human writing style.
+1. Update Education section considering job description.
+  - Update the fields in education items if possible.
+2. Update Skills section considering job description.
+  - Add important missing skill categories and items to "Skills" section and within work experience highlights.
+  - Completely reconstruct the skill categories(names) and items(keywords) so that the skills section can be fully tailored to job description.
+  - A category(name) should contain one or more items(keywords). Please discard the categories containing no item.
+3. Update Work Experience section considering job description.
+  - In every work experience, please don't change the role(position) in the company.
+  - Completely rewrite the work highlights so that the hiring manager will consider the best match to the job technically and emotionally.
+  - Highlights: 2~4 per experience, closely mirroring job requirements. 
+4. Update Projects section considering job description.
+  - Please add new seemless project experiences that the hiring manager would consider as valuable and important.
+  - Shortlist or create 1~2 highly relevant project experiences aligned with the job description. THIS IS IMPORTANT, 2~3 highly relevant projects
+  - Descriptions: 2 descriptions per project, closely mirroring job requirements. 
+  - Completely rewrite the project descriptions so that the hiring manager will consider the best match to the job technically and emotionally.
+5. Update Awards section.
+  - Update the summary description if possible.
+
+How to do:
+- Storytelling: Utilize STAR methodology (Situation, Task, Action, Result) implicitly within each bullet point(work experience highlights and project descriptions).
+- Action Verbs: Showcase soft skills with strong, active verbs.
+- Specificity: Prioritize relevance to the specific job over general achievements.
+- Structure: Each bullet point follows "Did X by doing Y, achieved Z" format.
+- Clarity: Clear expression trumps impressiveness.
+- Voice: Use active voice whenever possible.
+- Proofreading: Ensure impeccable spelling and grammar.
+- Do not use any special symbols like &, #, $, etc.
+
+Now consider the following TypeScript Interface for the JSON schema:
+-----
+interface Basics {
+    name: string;
+    email: string;
+    phone: string;
+    website: string;
+    address: string;
+}
+interface Summary {
+  text: string;
+}
+interface EducationItem {
+    institution: string;
+    area: string;
+    additionalAreas: string[];
+    studyType: string;
+    date: string;
+    score: string;
+    location: string;
+}
+interface WorkItem {
+    company: string;
+    position: string;
+    startDate: string;
+    endDate: string;
+    location: string;
+    highlights: string[];
+}
+interface ProjectItem {
+    name: string;
+    description: string[];
+    keywords: string[];
+    url: string;
+}
+type HardSkills = "Programming Languages" | "Tools" | "Frameworks" | "Computer Proficiency";
+type SoftSkills = "Team Work" | "Communication" | "Leadership" | "Problem Solving" | "Creativity";
+type OtherSkills = string;
+interface SkillItem {
+    name: HardSkills | SoftSkills | OtherSkills;
+    keywords: string[];
+}
+interface AwardItem {
+    title: string;
+    date: string;
+    awarder: string;
+    summary: string;
+}
+interface RESUME_DATA_SCHEMA {
+    basics: Basics;
+    summary: Summary;
+    education: EducationItem[];
+    work: WorkItem[];
+    projects: ProjectItem[];
+    skills: SkillItem[];
+    awards: AwardItem[];
+}
+-----
+
+In the SkillItem schema, 
+- the "name" means skill category name and 
+- the keywords mean skill items such as Python, Pytorch, PowerBI, AWS and so on.
+
+Write the Well-formatted JSON adhering to the RESUME_DATA_SCHEMA schema, handling missing values as empty strings.
+I want to convert the output directly to JSON hence, the results should contain valid JSON only, without any delimiter or characters making invalid JSON format.

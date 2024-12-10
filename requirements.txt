@@ -1,0 +1,14 @@
+python-dotenv
+google.generativeai
+
+pdfminer-six
+jinja2
+docx2txt
+python-docx
+pypandoc
+pymupdf
+
+streamlit
+streamlit-ext
+# stqdm
+# Markdown
